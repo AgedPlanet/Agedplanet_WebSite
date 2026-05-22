@@ -1,8 +1,10 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";
-import Image from "next/image";
 import { useRef } from "react";
+
+const agedPlanetSplineScene =
+  "https://my.spline.design/timqxyzhero2024edition-039464c17f0aade91ec16e3b8c25191e/";
 
 export default function Hero() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -19,7 +21,7 @@ export default function Hero() {
         ref={container}
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="relative z-20 flex h-full w-full flex-col justify-between p-6 text-white sm:p-10 lg:p-20">
+        <div className="pointer-events-none relative z-20 flex h-full w-full flex-col justify-between p-6 text-white sm:p-10 lg:p-20">
           <div className="flex items-center justify-between text-xs uppercase tracking-[0.32em] text-white/80 sm:text-sm">
             <span>AgedPlanet Ecommerce Inc.</span>
             <span>Build mode</span>
@@ -43,16 +45,17 @@ export default function Hero() {
 
         <div className="fixed left-0 top-[-10vh] h-[120vh] w-full">
           <motion.div className="relative h-full w-full" style={{ y }}>
-            <Image
-              alt="Workspace with ecommerce planning tools and product research"
-              className="grayscale-0"
-              fill
-              priority
-              sizes="100vw"
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=85&w=2400"
-              style={{ objectFit: "cover" }}
+            <iframe
+              aria-label="AgedPlanet interactive orbital commerce background"
+              className="absolute inset-0 h-full w-full scale-[1.03] border-0 opacity-95"
+              loading="eager"
+              referrerPolicy="no-referrer"
+              sandbox="allow-same-origin allow-scripts allow-downloads allow-forms allow-modals allow-popups allow-presentation"
+              src={agedPlanetSplineScene}
+              title="AgedPlanet interactive orbital commerce background"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/35 to-black/70" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(0,113,227,0.26),transparent_30%),linear-gradient(135deg,rgba(0,0,0,0.82),rgba(0,0,0,0.32)_45%,rgba(0,0,0,0.76))]" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
           </motion.div>
         </div>
       </div>
