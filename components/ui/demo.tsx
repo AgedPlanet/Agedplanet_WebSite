@@ -9,26 +9,19 @@ const scrollSpring = { stiffness: 320, damping: 34, mass: 0.16 };
 
 const wordmark3dStyle = {
   color: "#ffffff",
-  WebkitTextFillColor: "#ffffff",
   textShadow:
-    // Crisp bright-white face with glow
-    "0 0 2px rgba(255,255,255,1)," +
-    "0 0 6px rgba(255,255,255,0.92)," +
-    // Tight front edge — pure white
+    // Tight front edge — pure white, no glow
     "0 1px 0 rgba(255,255,255,1)," +
-    // Shallow bevel — barely visible, stays white
-    "0 2px 0 rgba(245,245,245,0.94)," +
-    "0 3px 0 rgba(220,220,220,0.82)," +
+    // Shallow bevel
+    "0 2px 0 rgba(235,235,235,0.94)," +
+    "0 3px 0 rgba(210,210,210,0.82)," +
     // Controlled extrusion — darker but shorter stack
-    "0 5px 0 rgba(130,130,130,0.68)," +
-    "0 7px 0 rgba(80,80,80,0.72)," +
-    // Tight contact shadow — grounds the text without muddying
-    "0 11px 14px rgba(0,0,0,0.56)," +
+    "0 5px 0 rgba(120,120,120,0.66)," +
+    "0 7px 0 rgba(70,70,70,0.72)," +
+    // Tight contact shadow — grounds the text
+    "0 11px 14px rgba(0,0,0,0.52)," +
     // Soft ambient depth
-    "0 20px 36px rgba(0,0,0,0.46)," +
-    // Wide airy glow — keeps the mark luminous
-    "0 36px 80px rgba(255,255,255,0.18)",
-  WebkitTextStroke: "0.5px rgba(255,255,255,0.7)",
+    "0 20px 36px rgba(0,0,0,0.40)",
 };
 
 const taglineStyle = {
@@ -79,8 +72,12 @@ export default function Hero() {
             <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform">
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
-                className="absolute inset-0 h-full w-full scale-[1.03] border-0 opacity-100"
+                className="absolute border-0"
                 style={{
+                  width: "200%",
+                  height: "200%",
+                  transform: "scale(0.5)",
+                  transformOrigin: "top left",
                   filter:
                     "sepia(0.72) saturate(1.22) hue-rotate(334deg) brightness(0.82) contrast(1.08)",
                 }}
