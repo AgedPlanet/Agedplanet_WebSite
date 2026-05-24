@@ -20,37 +20,37 @@ const focusAreas: Array<{
   icon: LucideIcon;
 }> = [
   {
-    title: "Demand before inventory",
+    title: "Market positioning",
     description:
-      "AgedPlanet is being rebuilt around product validation first: search demand, margin math, competition checks, and return-risk review before buying stock.",
+      "Turn product value into clear messaging, channel strategy, and campaigns built for buyers, distributors, and online customers.",
     icon: SearchCheck,
   },
   {
-    title: "Supplier quality over cheap quotes",
+    title: "Sourcing and trade coordination",
     description:
-      "The next phase prioritizes samples, clearer specs, manufacturer communication, and smaller controlled batches instead of rushing into weak production runs.",
+      "Support supplier conversations, product requirements, quotes, samples, packaging, and shipping handoffs with tighter commercial control.",
     icon: Factory,
   },
   {
-    title: "Marketplace-ready execution",
+    title: "Commerce launch support",
     description:
-      "Listings, packaging, fulfillment, customer experience, and Amazon FBA readiness are treated as the product, not afterthoughts.",
+      "Prepare listings, sales materials, fulfillment flows, and customer touchpoints for ecommerce, marketplace, and wholesale channels.",
     icon: Store,
   },
 ];
 
 const process = [
-  "Research practical product problems",
-  "Validate demand and unit economics",
-  "Test suppliers with samples and specs",
-  "Launch small, measure honestly, improve",
+  "Define the market and buyer profile",
+  "Shape the offer, pricing, and message",
+  "Coordinate suppliers, samples, and trade terms",
+  "Launch campaigns, channels, and sales follow-up",
 ];
 
 const operatingNotes = [
-  "No fake catalog padding",
-  "No manufacturer guesswork",
-  "No chasing saturated products because a guru said so",
-  "No big claims until the business earns them",
+  "Brand positioning and go-to-market planning",
+  "Supplier and trading coordination",
+  "Ecommerce, marketplace, and wholesale readiness",
+  "Campaign assets, outreach, and launch support",
 ];
 
 function PillLink({ href, children }: { href: string; children: ReactNode }) {
@@ -85,25 +85,17 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
 
 function SiteHeader() {
   return (
-    <header className="relative z-50 border-b border-[#FFF8F0]/10 bg-[#4B2E2B]/90 text-[#FFF8F0] backdrop-blur-2xl">
-      <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5 text-xs">
+    <header className="relative z-50 border-b border-[#2D1F14]/10 bg-[#C8B89A]/95 text-[#2D1F14] backdrop-blur-2xl">
+      <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5 text-xs text-[#2D1F14]">
         <a className="flex items-center gap-2 font-semibold tracking-[-0.02em]" href="#top">
           <Globe2 className="size-4" />
           AgedPlanet
         </a>
-        <div className="hidden items-center gap-7 text-[#FFF8F0]/75 sm:flex">
-          <a className="transition hover:text-[#FFF8F0]" href="#focus">
-            Focus
-          </a>
-          <a className="transition hover:text-[#FFF8F0]" href="#process">
-            Process
-          </a>
-          <a className="transition hover:text-[#FFF8F0]" href="#status">
-            Status
-          </a>
-          <a className="transition hover:text-[#FFF8F0]" href="#contact">
-            Contact
-          </a>
+        <div className="hidden items-center gap-7 text-[#2D1F14]/55 sm:flex">
+          <a className="transition hover:text-[#2D1F14]" href="#focus">Services</a>
+          <a className="transition hover:text-[#2D1F14]" href="#process">Process</a>
+          <a className="transition hover:text-[#2D1F14]" href="#status">Capabilities</a>
+          <a className="transition hover:text-[#2D1F14]" href="#contact">Contact</a>
         </div>
       </nav>
     </header>
@@ -118,26 +110,25 @@ export default function Home() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-20 lg:grid-cols-[0.85fr_1.15fr] lg:py-28">
         <div>
-          <SectionEyebrow>A clean restart</SectionEyebrow>
+          <SectionEyebrow>Marketing & trading agency</SectionEyebrow>
           <h2 className="max-w-xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
-            Ecommerce, rebuilt without pretending the first run was perfect.
+            Market strategy, sourcing, and commerce execution under one roof.
           </h2>
         </div>
         <div className="space-y-6 text-lg leading-8 text-[#4B2E2B]/75">
           <p>
-            AgedPlanet is an ecommerce company focused on Amazon FBA and
-            practical consumer products. The early chapter exposed the usual
-            traps: saturated product choices, weak manufacturers, and expensive
-            lessons. Annoying? Yes. Useful? Also yes.
+            AgedPlanet works with brands, suppliers, and operators that need a
+            practical route into market: positioning, digital marketing,
+            supplier coordination, and trading support across ecommerce and
+            wholesale channels.
           </p>
           <p>
-            This site keeps the brand simple while the business earns its next
-            moves: a clear positioning page, honest operating principles, and a
-            contact path for suppliers, partners, and future customers.
+            We help shape the offer, prepare the sales path, and coordinate the
+            commercial details that turn interest into orders.
           </p>
           <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <PillLink href="#contact">Start a conversation</PillLink>
-            <OutlineLink href="#focus">See the focus</OutlineLink>
+            <OutlineLink href="#focus">View services</OutlineLink>
           </div>
         </div>
       </section>
@@ -145,9 +136,9 @@ export default function Home() {
       <section id="focus" className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-12 max-w-3xl">
-            <SectionEyebrow>What AgedPlanet is building</SectionEyebrow>
+            <SectionEyebrow>Services</SectionEyebrow>
             <h2 className="text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-5xl">
-              Simple products, stricter validation, better supplier discipline.
+              Commercial support for products that need a stronger path to market.
             </h2>
           </div>
 
@@ -177,14 +168,15 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#FFF8F0]/78">
-              Operating system
+              How we work
             </p>
             <h2 className="max-w-xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-5xl">
-              Boring fundamentals. Which, cruelly, are usually what works.
+              A commercial partner from positioning to purchase orders.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#FFF8F0]/70">
-              The next AgedPlanet launch should be measured by disciplined
-              execution, not motivational spreadsheet fiction.
+              AgedPlanet combines marketing judgment with trading discipline:
+              clear offer, credible supply, organized launch, and follow-through
+              after the first conversation.
             </p>
           </div>
 
@@ -209,7 +201,7 @@ export default function Home() {
         <div className="overflow-hidden rounded-[2rem] border border-[#8C5A3C]/12 bg-white shadow-[rgba(75,46,43,0.10)_0_18px_45px]">
           <div className="relative h-80">
             <Image
-              alt="Product planning desk for ecommerce operations"
+              alt="Marketing and trading strategy workspace"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&q=85&w=1600"
@@ -217,14 +209,14 @@ export default function Home() {
             />
           </div>
           <div className="p-7">
-            <SectionEyebrow>Current status</SectionEyebrow>
+            <SectionEyebrow>Agency focus</SectionEyebrow>
             <h2 className="mb-4 text-3xl font-semibold tracking-[-0.05em]">
-              Early-stage, intentionally lean.
+              Built for companies that need traction, not theatre.
             </h2>
             <p className="leading-7 text-[#4B2E2B]/70">
-              No inflated catalog, no fake testimonials, and no pretending the
-              brand has a hundred things figured out. The website is ready now;
-              the product line can grow only when the validation is real.
+              We work where marketing and operations meet: finding the right
+              market angle, preparing product information, coordinating
+              suppliers, and supporting the channels that actually sell.
             </p>
           </div>
         </div>
@@ -243,9 +235,9 @@ export default function Home() {
           ))}
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              [Boxes, "Product research"],
-              [PackageCheck, "Sample checks"],
-              [Truck, "FBA readiness"],
+              [Boxes, "Market strategy"],
+              [PackageCheck, "Trade support"],
+              [Truck, "Launch readiness"],
             ].map(([Icon, label]) => {
               const TileIcon = Icon as LucideIcon;
               return (
@@ -267,16 +259,16 @@ export default function Home() {
       <section id="contact" className="px-5 pb-6">
         <div className="mx-auto max-w-6xl rounded-[2.5rem] border border-[#8C5A3C]/12 bg-white p-8 text-center shadow-[rgba(75,46,43,0.10)_0_18px_45px] sm:p-14 lg:p-20">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#8C5A3C]">
-            Suppliers, partners, future customers
+            Work with AgedPlanet
           </p>
           <h2 className="mx-auto max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-6xl">
-            If it is practical, durable, and not another copycat gimmick, talk to
-            AgedPlanet.
+            Bring a product, supplier, or market opportunity. We will help turn
+            it into a commercial plan.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#4B2E2B]/70">
-            The brand is still lean. That is the point. Strong product ideas,
-            supplier introductions, and ecommerce partnerships can start with a
-            focused conversation.
+            Use AgedPlanet for marketing strategy, trade coordination, ecommerce
+            launch support, or partnership development across North American and
+            international channels.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <PillLink href="mailto:ahmedgawish@agedplanet.com">
@@ -295,7 +287,7 @@ export default function Home() {
 
       <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-10 text-sm text-[#4B2E2B]/60 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 AgedPlanet Ecommerce Inc.</p>
-        <p>Built with Next.js, Tailwind CSS, TypeScript, and shadcn structure.</p>
+        <p>Marketing, sourcing, and trading operations.</p>
       </footer>
     </main>
   );

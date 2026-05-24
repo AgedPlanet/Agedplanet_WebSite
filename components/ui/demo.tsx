@@ -8,27 +8,27 @@ const agedPlanetSplineScene = "/agedplanet-spline.html";
 const scrollSpring = { stiffness: 320, damping: 34, mass: 0.16 };
 
 const wordmark3dStyle = {
-  color: "#ffffff",
+  color: "#2D1F14",
   textShadow:
-    // Tight front edge — pure white, no glow
-    "0 1px 0 rgba(255,255,255,1)," +
-    // Shallow bevel
-    "0 2px 0 rgba(235,235,235,0.94)," +
-    "0 3px 0 rgba(210,210,210,0.82)," +
-    // Controlled extrusion — darker but shorter stack
-    "0 5px 0 rgba(120,120,120,0.66)," +
-    "0 7px 0 rgba(70,70,70,0.72)," +
-    // Tight contact shadow — grounds the text
-    "0 11px 14px rgba(0,0,0,0.52)," +
+    // Front face — crisp dark
+    "0 1px 0 rgba(45,31,20,1)," +
+    // Shallow bevel — lifting into lighter tones
+    "0 2px 0 rgba(90,65,48,0.94)," +
+    "0 3px 0 rgba(130,100,72,0.82)," +
+    // Extrusion — warm stone shades
+    "0 5px 0 rgba(175,145,115,0.66)," +
+    "0 7px 0 rgba(200,170,140,0.72)," +
+    // Contact shadow — subtle on beige
+    "0 11px 14px rgba(0,0,0,0.14)," +
     // Soft ambient depth
-    "0 20px 36px rgba(0,0,0,0.40)",
+    "0 20px 36px rgba(0,0,0,0.08)",
 };
 
 const taglineStyle = {
-  color: "#ffffff",
+  color: "#2D1F14",
   textShadow:
-    "0 1px 3px rgba(0,0,0,0.52)," +
-    "0 4px 16px rgba(0,0,0,0.38)",
+    "0 1px 3px rgba(0,0,0,0.14)," +
+    "0 4px 12px rgba(0,0,0,0.08)",
 };
 
 export default function Hero() {
@@ -43,23 +43,23 @@ export default function Hero() {
   return (
     <section className="mx-2 mt-0 overflow-hidden rounded-[2rem] bg-[#FFF8F0] md:mx-4 md:mt-2 md:rounded-[2.5rem]">
       <div
-        className="relative isolate flex h-[88vh] min-h-[620px] items-center justify-center overflow-hidden bg-[#4B2E2B]"
+        className="relative isolate flex h-[88vh] min-h-[620px] items-center justify-center overflow-hidden bg-[#C8B89A]"
         ref={container}
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="pointer-events-none absolute inset-0 z-[25] flex items-end px-6 pb-[16vh] pt-6 text-white sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
+        <div className="pointer-events-none absolute inset-0 z-[25] flex items-end px-6 pb-[16vh] pt-6 text-[#2D1F14] sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
           <div className="translate-x-[5vw] sm:translate-x-[4vw]">
             <h1
-              className="max-w-5xl text-balance text-5xl font-bold leading-[0.94] tracking-[-0.05em] text-white sm:text-7xl md:text-8xl lg:text-[7.5vw]"
+              className="max-w-5xl text-balance text-5xl font-bold leading-[0.94] tracking-[-0.05em] sm:text-7xl md:text-8xl lg:text-[7.5vw]"
               style={wordmark3dStyle}
             >
               AgedPlanet
             </h1>
             <p
-              className="mt-3 max-w-4xl text-balance text-lg font-light leading-[1.22] tracking-[-0.015em] text-white sm:mt-4 sm:text-2xl lg:text-[1.6vw]"
+              className="mt-3 max-w-4xl text-balance text-lg font-light leading-[1.22] tracking-[-0.015em] sm:mt-4 sm:text-2xl lg:text-[1.6vw]"
               style={taglineStyle}
             >
-              Honest products. Cleaner operations. No hype tax.
+              Marketing, sourcing, and trading support for brands ready to move.
             </p>
           </div>
         </div>
@@ -68,18 +68,15 @@ export default function Hero() {
           <motion.div
             className="relative h-full w-full transform-gpu will-change-transform"
             style={{ y: scrollY }}
+            suppressHydrationWarning
           >
             <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform">
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
-                className="absolute border-0"
+                className="absolute inset-0 h-full w-full scale-[1.04] border-0 opacity-100"
                 style={{
-                  width: "200%",
-                  height: "200%",
-                  transform: "scale(0.5)",
-                  transformOrigin: "top left",
                   filter:
-                    "sepia(0.72) saturate(1.22) hue-rotate(334deg) brightness(0.82) contrast(1.08)",
+                    "sepia(0.15) saturate(0.7) hue-rotate(340deg) brightness(0.85) contrast(1.35)",
                 }}
                 loading="eager"
                 referrerPolicy="no-referrer"
@@ -88,26 +85,20 @@ export default function Hero() {
                 title="AgedPlanet interactive orbital commerce background"
               />
             </div>
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(192,133,82,0.34),transparent_30%),linear-gradient(135deg,rgba(75,46,43,0.82),rgba(75,46,43,0.34)_45%,rgba(0,0,0,0.72))]" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#4B2E2B]/75 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(45,31,20,0.12),transparent_30%),linear-gradient(135deg,rgba(45,31,20,0.22),rgba(45,31,20,0.08)_45%,rgba(0,0,0,0.12))]" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#C8B89A]/90 to-transparent" />
           </motion.div>
         </div>
 
-        <div className="pointer-events-none relative z-30 flex h-full w-full flex-col justify-between p-6 text-[#FFF8F0] sm:p-10 lg:p-20">
-          <div className="flex items-center text-xs uppercase tracking-[0.32em] text-[#FFF8F0]/80 sm:text-sm">
-            <span>AgedPlanet Ecommerce Inc.</span>
+        <div className="pointer-events-none relative z-30 flex h-full w-full flex-col justify-between p-6 text-[#2D1F14] sm:p-10 lg:p-20">
+          <div className="flex items-center text-xs uppercase tracking-[0.32em] text-[#2D1F14]/60 sm:text-sm">
+            <span>AgedPlanet Marketing & Trading</span>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[0.42fr_1.58fr] lg:items-end">
-            <div>
-              <div
-                aria-hidden="true"
-                className="h-[5.05rem] sm:h-[8.75rem] lg:h-[9.75vw]"
-              />
-            </div>
-            <p className="max-w-[42rem] justify-self-start rounded-[1.5rem] bg-[#4B2E2B]/68 p-5 text-balance text-lg leading-tight tracking-[-0.04em] text-[#FFF8F0] shadow-2xl ring-1 ring-[#C08552]/35 backdrop-blur-md sm:text-xl lg:text-[1.38vw]">
-              Rebuilding ecommerce the practical way: validate demand, test
-              suppliers, and launch only products worth standing behind.
+          <div className="flex justify-end">
+            <p className="max-w-[34rem] rounded-[1.5rem] bg-white/75 p-4 text-balance text-base leading-tight tracking-[-0.04em] text-[#2D1F14] shadow-lg ring-1 ring-[#2D1F14]/10 backdrop-blur-md sm:text-lg lg:text-[1.15vw]">
+              AgedPlanet connects market strategy, supplier coordination, and
+              commerce execution so products can move from opportunity to shelf.
             </p>
           </div>
         </div>
