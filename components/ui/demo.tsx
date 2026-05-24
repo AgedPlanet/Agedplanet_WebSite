@@ -8,9 +8,11 @@ const agedPlanetSplineScene = "/agedplanet-spline.html";
 const scrollSpring = { stiffness: 320, damping: 34, mass: 0.16 };
 
 const wordmark3dStyle = {
+  color: "#ffffff",
   textShadow:
-    "0 1px 0 rgba(225,246,255,0.78), 0 2px 0 rgba(157,210,238,0.62), 0 4px 0 rgba(74,139,178,0.45), 0 8px 0 rgba(10,46,68,0.38), 0 18px 34px rgba(0,0,0,0.82), 0 34px 76px rgba(0,113,227,0.34)",
-  WebkitTextStroke: "1px rgba(255,255,255,0.32)",
+    "0 0 2px rgba(255,255,255,1), 0 1px 0 rgba(255,255,255,1), 0 2px 0 rgba(238,238,238,0.96), 0 3px 0 rgba(214,214,214,0.9), 0 5px 0 rgba(150,150,150,0.78), 0 8px 0 rgba(72,72,72,0.82), 0 13px 18px rgba(0,0,0,0.72), 0 24px 44px rgba(0,0,0,0.62), 0 42px 90px rgba(255,255,255,0.24)",
+  WebkitTextStroke: "1px rgba(255,255,255,0.75)",
+  filter: "drop-shadow(0 18px 18px rgba(0,0,0,0.46))",
 };
 
 export default function Hero() {
@@ -23,20 +25,26 @@ export default function Hero() {
   const scrollY = useSpring(rawScrollY, scrollSpring);
 
   return (
-    <section className="mx-2 mt-0 overflow-hidden rounded-[2rem] bg-white md:mx-4 md:mt-2 md:rounded-[2.5rem]">
+    <section className="mx-2 mt-0 overflow-hidden rounded-[2rem] bg-[#FFF8F0] md:mx-4 md:mt-2 md:rounded-[2.5rem]">
       <div
-        className="relative isolate flex h-[88vh] min-h-[620px] items-center justify-center overflow-hidden bg-black"
+        className="relative isolate flex h-[88vh] min-h-[620px] items-center justify-center overflow-hidden bg-[#4B2E2B]"
         ref={container}
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-end px-6 pb-[16vh] pt-6 text-white sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-end px-6 pb-[16vh] pt-6 text-[#FFF8F0] sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
           <div className="translate-x-[5vw] sm:translate-x-[4vw]">
             <h1
-              className="max-w-5xl text-balance text-6xl font-semibold leading-[0.9] tracking-[-0.09em] text-white/95 sm:text-8xl lg:text-[8vw]"
+              className="max-w-5xl text-balance text-6xl font-semibold leading-[0.95] tracking-[-0.09em] text-white sm:text-8xl lg:text-[8vw]"
               style={wordmark3dStyle}
             >
               AgedPlanet
             </h1>
+            <p
+              className="mt-3 max-w-4xl text-balance text-xl font-semibold leading-[0.96] tracking-[-0.065em] text-white sm:mt-4 sm:text-3xl lg:text-[2.15vw]"
+              style={wordmark3dStyle}
+            >
+              Honest products. Cleaner operations. No hype tax.
+            </p>
           </div>
         </div>
 
@@ -48,7 +56,11 @@ export default function Hero() {
             <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform">
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
-                className="absolute inset-0 h-full w-full scale-[1.03] border-0 opacity-95"
+                className="absolute inset-0 h-full w-full scale-[1.03] border-0 opacity-100"
+                style={{
+                  filter:
+                    "sepia(0.72) saturate(1.22) hue-rotate(334deg) brightness(0.82) contrast(1.08)",
+                }}
                 loading="eager"
                 referrerPolicy="no-referrer"
                 sandbox="allow-same-origin allow-scripts allow-downloads allow-forms allow-modals allow-popups allow-presentation"
@@ -56,28 +68,24 @@ export default function Hero() {
                 title="AgedPlanet interactive orbital commerce background"
               />
             </div>
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(0,113,227,0.28),transparent_28%),linear-gradient(135deg,rgba(0,0,0,0.78),rgba(0,0,0,0.24)_45%,rgba(0,0,0,0.74))]" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(192,133,82,0.34),transparent_30%),linear-gradient(135deg,rgba(75,46,43,0.82),rgba(75,46,43,0.34)_45%,rgba(0,0,0,0.72))]" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#4B2E2B]/75 to-transparent" />
           </motion.div>
         </div>
 
-        <div className="pointer-events-none relative z-30 flex h-full w-full flex-col justify-between p-6 text-white sm:p-10 lg:p-20">
-          <div className="flex items-center justify-between text-xs uppercase tracking-[0.32em] text-white/80 sm:text-sm">
+        <div className="pointer-events-none relative z-30 flex h-full w-full flex-col justify-between p-6 text-[#FFF8F0] sm:p-10 lg:p-20">
+          <div className="flex items-center text-xs uppercase tracking-[0.32em] text-[#FFF8F0]/80 sm:text-sm">
             <span>AgedPlanet Ecommerce Inc.</span>
-            <span>Build mode</span>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
             <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.36em] text-[#9fd0ff]">
-                Honest products. Cleaner operations. No hype tax.
-              </p>
               <div
                 aria-hidden="true"
-                className="h-[3.4rem] sm:h-[5.4rem] lg:h-[7.2vw]"
+                className="h-[5.05rem] sm:h-[8.75rem] lg:h-[9.75vw]"
               />
             </div>
-            <p className="max-w-xl rounded-[1.5rem] bg-black/45 p-5 text-balance text-xl leading-tight tracking-[-0.04em] text-white shadow-2xl ring-1 ring-white/15 backdrop-blur-md sm:text-2xl lg:text-[1.65vw]">
+            <p className="max-w-xl rounded-[1.5rem] bg-[#4B2E2B]/68 p-5 text-balance text-xl leading-tight tracking-[-0.04em] text-[#FFF8F0] shadow-2xl ring-1 ring-[#C08552]/35 backdrop-blur-md sm:text-2xl lg:text-[1.65vw]">
               Rebuilding ecommerce the practical way: validate demand, test
               suppliers, and launch only products worth standing behind.
             </p>

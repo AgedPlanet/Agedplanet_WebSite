@@ -56,7 +56,7 @@ const operatingNotes = [
 function PillLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a
-      className="inline-flex h-11 items-center justify-center rounded-full bg-[#0071e3] px-5 text-sm font-medium text-white transition hover:bg-[#0066cc] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:ring-offset-2 focus:ring-offset-white"
+      className="inline-flex h-11 items-center justify-center rounded-full bg-[#8C5A3C] px-5 text-sm font-medium text-[#FFF8F0] shadow-[rgba(75,46,43,0.18)_0_10px_24px] transition hover:bg-[#4B2E2B] focus:outline-none focus:ring-2 focus:ring-[#C08552] focus:ring-offset-2 focus:ring-offset-[#FFF8F0]"
       href={href}
     >
       {children}
@@ -67,7 +67,7 @@ function PillLink({ href, children }: { href: string; children: ReactNode }) {
 function OutlineLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a
-      className="inline-flex h-11 items-center justify-center rounded-full border border-black/15 bg-white/70 px-5 text-sm font-medium text-[#1d1d1f] backdrop-blur transition hover:border-black/30 hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:ring-offset-2 focus:ring-offset-white"
+      className="inline-flex h-11 items-center justify-center rounded-full border border-[#8C5A3C]/25 bg-white/70 px-5 text-sm font-medium text-[#4B2E2B] backdrop-blur transition hover:border-[#8C5A3C]/55 hover:bg-[#FFF8F0] focus:outline-none focus:ring-2 focus:ring-[#C08552] focus:ring-offset-2 focus:ring-offset-[#FFF8F0]"
       href={href}
     >
       {children}
@@ -77,7 +77,7 @@ function OutlineLink({ href, children }: { href: string; children: ReactNode }) 
 
 function SectionEyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#0066cc]">
+    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#8C5A3C]">
       {children}
     </p>
   );
@@ -85,23 +85,23 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
 
 function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/80 text-white backdrop-blur-2xl">
+    <header className="relative z-50 border-b border-[#FFF8F0]/10 bg-[#4B2E2B]/90 text-[#FFF8F0] backdrop-blur-2xl">
       <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5 text-xs">
         <a className="flex items-center gap-2 font-semibold tracking-[-0.02em]" href="#top">
           <Globe2 className="size-4" />
           AgedPlanet
         </a>
-        <div className="hidden items-center gap-7 text-white/75 sm:flex">
-          <a className="transition hover:text-white" href="#focus">
+        <div className="hidden items-center gap-7 text-[#FFF8F0]/75 sm:flex">
+          <a className="transition hover:text-[#FFF8F0]" href="#focus">
             Focus
           </a>
-          <a className="transition hover:text-white" href="#process">
+          <a className="transition hover:text-[#FFF8F0]" href="#process">
             Process
           </a>
-          <a className="transition hover:text-white" href="#status">
+          <a className="transition hover:text-[#FFF8F0]" href="#status">
             Status
           </a>
-          <a className="transition hover:text-white" href="#contact">
+          <a className="transition hover:text-[#FFF8F0]" href="#contact">
             Contact
           </a>
         </div>
@@ -112,7 +112,7 @@ function SiteHeader() {
 
 export default function Home() {
   return (
-    <main id="top" className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
+    <main id="top" className="min-h-screen bg-[#FFF8F0] text-[#4B2E2B]">
       <SiteHeader />
       <Hero />
 
@@ -123,7 +123,7 @@ export default function Home() {
             Ecommerce, rebuilt without pretending the first run was perfect.
           </h2>
         </div>
-        <div className="space-y-6 text-lg leading-8 text-black/70">
+        <div className="space-y-6 text-lg leading-8 text-[#4B2E2B]/75">
           <p>
             AgedPlanet is an ecommerce company focused on Amazon FBA and
             practical consumer products. The early chapter exposed the usual
@@ -156,16 +156,16 @@ export default function Home() {
               const Icon = area.icon;
               return (
                 <article
-                  className="rounded-[1.5rem] bg-[#f5f5f7] p-7 shadow-[rgba(0,0,0,0.08)_0_18px_45px]"
+                  className="rounded-[1.5rem] border border-[#8C5A3C]/12 bg-[#FFF8F0] p-7 shadow-[rgba(75,46,43,0.10)_0_18px_45px]"
                   key={area.title}
                 >
-                  <div className="mb-10 flex size-11 items-center justify-center rounded-full bg-black text-white">
+                  <div className="mb-10 flex size-11 items-center justify-center rounded-full bg-[#4B2E2B] text-[#FFF8F0]">
                     <Icon className="size-5" />
                   </div>
                   <h3 className="mb-3 text-2xl font-semibold tracking-[-0.04em]">
                     {area.title}
                   </h3>
-                  <p className="leading-7 text-black/65">{area.description}</p>
+                  <p className="leading-7 text-[#4B2E2B]/70">{area.description}</p>
                 </article>
               );
             })}
@@ -173,26 +173,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="process" className="bg-black py-20 text-white lg:py-28">
+      <section id="process" className="bg-[#4B2E2B] py-20 text-[#FFF8F0] lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#2997ff]">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#FFF8F0]/78">
               Operating system
             </p>
             <h2 className="max-w-xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-5xl">
               Boring fundamentals. Which, cruelly, are usually what works.
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/65">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#FFF8F0]/70">
               The next AgedPlanet launch should be measured by disciplined
               execution, not motivational spreadsheet fiction.
             </p>
           </div>
 
-          <div className="rounded-[2rem] bg-white/10 p-4 ring-1 ring-white/10 backdrop-blur">
-            <ol className="divide-y divide-white/10">
+          <div className="rounded-[2rem] bg-[#FFF8F0]/10 p-4 ring-1 ring-[#C08552]/30 backdrop-blur">
+            <ol className="divide-y divide-[#FFF8F0]/12">
               {process.map((step, index) => (
                 <li className="flex items-center gap-5 py-5" key={step}>
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#FFF8F0] text-sm font-semibold text-[#4B2E2B]">
                     {index + 1}
                   </span>
                   <span className="text-xl font-medium tracking-[-0.03em]">
@@ -206,7 +206,7 @@ export default function Home() {
       </section>
 
       <section id="status" className="mx-auto grid max-w-6xl gap-6 px-5 py-20 lg:grid-cols-2 lg:py-28">
-        <div className="overflow-hidden rounded-[2rem] bg-white shadow-[rgba(0,0,0,0.08)_0_18px_45px]">
+        <div className="overflow-hidden rounded-[2rem] border border-[#8C5A3C]/12 bg-white shadow-[rgba(75,46,43,0.10)_0_18px_45px]">
           <div className="relative h-80">
             <Image
               alt="Product planning desk for ecommerce operations"
@@ -221,7 +221,7 @@ export default function Home() {
             <h2 className="mb-4 text-3xl font-semibold tracking-[-0.05em]">
               Early-stage, intentionally lean.
             </h2>
-            <p className="leading-7 text-black/65">
+            <p className="leading-7 text-[#4B2E2B]/70">
               No inflated catalog, no fake testimonials, and no pretending the
               brand has a hundred things figured out. The website is ready now;
               the product line can grow only when the validation is real.
@@ -232,10 +232,10 @@ export default function Home() {
         <div className="grid gap-4">
           {operatingNotes.map((note) => (
             <div
-              className="flex items-start gap-4 rounded-[1.5rem] bg-white p-6 shadow-[rgba(0,0,0,0.06)_0_12px_30px]"
+              className="flex items-start gap-4 rounded-[1.5rem] border border-[#8C5A3C]/12 bg-white p-6 shadow-[rgba(75,46,43,0.08)_0_12px_30px]"
               key={note}
             >
-              <BadgeCheck className="mt-1 size-5 shrink-0 text-[#0071e3]" />
+              <BadgeCheck className="mt-1 size-5 shrink-0 text-[#8C5A3C]" />
               <p className="text-xl font-medium leading-7 tracking-[-0.03em]">
                 {note}
               </p>
@@ -250,11 +250,11 @@ export default function Home() {
               const TileIcon = Icon as LucideIcon;
               return (
                 <div
-                  className="rounded-[1.25rem] bg-black p-5 text-white"
+                  className="rounded-[1.25rem] bg-[#4B2E2B] p-5 text-[#FFF8F0]"
                   key={label as string}
                 >
-                  <TileIcon className="mb-8 size-5 text-[#2997ff]" />
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+                  <TileIcon className="mb-8 size-5 text-[#C08552]" />
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#FFF8F0]/72">
                     {label as string}
                   </p>
                 </div>
@@ -265,15 +265,15 @@ export default function Home() {
       </section>
 
       <section id="contact" className="px-5 pb-6">
-        <div className="mx-auto max-w-6xl rounded-[2.5rem] bg-white p-8 text-center shadow-[rgba(0,0,0,0.08)_0_18px_45px] sm:p-14 lg:p-20">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#0066cc]">
+        <div className="mx-auto max-w-6xl rounded-[2.5rem] border border-[#8C5A3C]/12 bg-white p-8 text-center shadow-[rgba(75,46,43,0.10)_0_18px_45px] sm:p-14 lg:p-20">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#8C5A3C]">
             Suppliers, partners, future customers
           </p>
           <h2 className="mx-auto max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-6xl">
             If it is practical, durable, and not another copycat gimmick, talk to
             AgedPlanet.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-black/65">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#4B2E2B]/70">
             The brand is still lean. That is the point. Strong product ideas,
             supplier introductions, and ecommerce partnerships can start with a
             focused conversation.
@@ -283,7 +283,7 @@ export default function Home() {
               Email AgedPlanet
             </PillLink>
             <a
-              className="inline-flex h-11 items-center gap-2 text-sm font-medium text-[#0066cc] transition hover:text-[#0071e3]"
+              className="inline-flex h-11 items-center gap-2 text-sm font-medium text-[#8C5A3C] transition hover:text-[#4B2E2B]"
               href="mailto:ahmedgawish@agedplanet.com?subject=AgedPlanet%20partnership"
             >
               ahmedgawish@agedplanet.com
@@ -293,7 +293,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-10 text-sm text-black/55 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-10 text-sm text-[#4B2E2B]/60 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 AgedPlanet Ecommerce Inc.</p>
         <p>Built with Next.js, Tailwind CSS, TypeScript, and shadcn structure.</p>
       </footer>

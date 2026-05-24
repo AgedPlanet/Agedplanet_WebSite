@@ -105,15 +105,156 @@
 		<script type="module">
 			import { Application } from 'https://unpkg.com/@splinetool/runtime@1.0.66/build/runtime.js';
 			const canvas = document.getElementById('canvas3d');
-			const app = new Application(canvas);
-			
+			const app = window.__agedPlanetSplineApp = new Application(canvas);
 
-			
+			const planetBaseColor = { r: 31 / 255, g: 58 / 255, b: 104 / 255, a: 1 };
+			const planetRimColor = { r: 54 / 255, g: 91 / 255, b: 152 / 255, a: 1 };
+
+			const texturedPlanetShader = `
+float apHash21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+float apNoise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  float a = apHash21(i);
+  float b = apHash21(i + vec2(1.0, 0.0));
+  float c = apHash21(i + vec2(0.0, 1.0));
+  float d = apHash21(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+float apFbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.54;
+  mat2 r = mat2(1.62, -1.08, 1.08, 1.62);
+  for (int i = 0; i < 6; i++) {
+    v += a * apNoise(p);
+    p = r * p + vec2(0.17, 0.31);
+    a *= 0.5;
+  }
+  return v;
+}
+
+vec3 apPlanetTexture(vec3 base, vec2 uv, vec3 normal, vec3 pos) {
+  vec2 sphereUv = vec2(
+    atan(normal.z, normal.x) / 6.28318530718 + 0.5,
+    asin(clamp(normal.y, -1.0, 1.0)) / 3.14159265359 + 0.5
+  );
+  vec2 p = mix(sphereUv, uv, 0.1);
+  float continent = apFbm(p * vec2(6.8, 3.6) + vec2(0.21, -0.07));
+  float stratum = apFbm(p * vec2(23.0, 12.5) + vec2(continent * 2.8, -continent * 1.4));
+  float fine = apFbm(p * vec2(72.0, 38.0) + vec2(stratum * 3.2, continent * 2.1));
+  float micro = apFbm(p * vec2(148.0, 79.0) + vec2(4.7, -2.4));
+  float ridges = 1.0 - abs(2.0 * stratum - 1.0);
+  float sharpRidges = pow(clamp(ridges, 0.0, 1.0), 2.4);
+  float veins = smoothstep(0.46, 0.78, sharpRidges + fine * 0.28) * smoothstep(0.32, 0.76, continent);
+  float cracks = smoothstep(0.62, 0.88, 1.0 - abs(2.0 * fine - 1.0)) * smoothstep(0.36, 0.74, stratum);
+  float pocks = smoothstep(0.73, 0.96, micro) * (1.0 - smoothstep(0.70, 1.0, continent));
+  float bands = 0.5 + 0.5 * sin((p.y * 28.0) + continent * 5.8 + p.x * 3.3);
+  vec3 darkRock = base * 0.42;
+  vec3 midRock = base * (0.92 + continent * 0.58);
+  vec3 paleRock = min(base * 2.75 + vec3(0.04, 0.05, 0.07), vec3(1.0));
+  vec3 inkRock = base * 0.28;
+  vec3 color = mix(darkRock, midRock, smoothstep(0.24, 0.78, continent));
+  color = mix(color, paleRock, veins * 0.72);
+  color = mix(color, paleRock * 0.9, cracks * 0.24);
+  color *= mix(0.68, 1.38, bands * 0.22 + fine * 0.5 + micro * 0.28);
+  color = mix(color, inkRock, pocks * 0.46);
+  color = pow(max(color, vec3(0.0)), vec3(0.92));
+  return color;
+}
+`;
+
+			const patchPlanetFragmentShader = (source) => {
+				if (!source || source.includes('apPlanetTexture')) return source;
+
+				return source
+					.replace('void main() {', `${texturedPlanetShader}\nvoid main() {`)
+					.replace(
+						/vec3 diffuseColor = customColor\(nodeU0,1\.0,nodeU1,([^;]+);/,
+						'vec3 diffuseColor = customColor(nodeU0,1.0,nodeU1,$1;\n\tdiffuseColor = apPlanetTexture(diffuseColor, vUv, normalize(vWNormal), vPosition);'
+					);
+			}
+
+			const applyHighResolutionRenderTarget = () => {
+				const renderer = app?._renderer;
+				const cssWidth = canvas?.clientWidth || canvas?.parentElement?.clientWidth || window.innerWidth;
+				const cssHeight = canvas?.clientHeight || canvas?.parentElement?.clientHeight || window.innerHeight;
+				if (!renderer || !cssWidth || !cssHeight) return false;
+
+				// Render the Spline canvas above CSS pixel density so the planet texture does
+				// not look muddy when the huge sphere is scaled across the hero.
+				const renderScale = Math.min(Math.max(window.devicePixelRatio || 1, 1.6), 2);
+				const targetWidth = Math.round(cssWidth * renderScale);
+				const targetHeight = Math.round(cssHeight * renderScale);
+				renderer.setPixelRatio?.(1);
+				renderer.setSize?.(targetWidth, targetHeight, false);
+				app.requestRender?.();
+				return canvas.width === targetWidth && canvas.height === targetHeight;
+			}
+
+			const scheduleHighResolutionRenderTarget = () => {
+				[0, 100, 250, 500, 1000, 2000, 4000].forEach((delay) => {
+					setTimeout(applyHighResolutionRenderTarget, delay);
+				});
+			}
+
+			window.__agedPlanetApplyHighResolutionRenderTarget = applyHighResolutionRenderTarget;
+
+			const setSplineColor = (target, color) => {
+				if (!target) return;
+				target.r = color.r;
+				target.g = color.g;
+				target.b = color.b;
+				if ('a' in target) target.a = color.a;
+			}
+
+			const applyTexturedPlanetMaterial = () => {
+				const planet = app?._scene?.getObjectByName?.('Nav Sphere');
+				const material = planet?.material;
+				const uniforms = material?.uniforms;
+				if (!uniforms) return;
+
+				['nodeU0', 'nodeU2'].forEach((key) => setSplineColor(uniforms[key]?.value, planetBaseColor));
+				['nodeU11', 'nodeU12', 'nodeU24'].forEach((key) => setSplineColor(uniforms[key]?.value, planetRimColor));
+
+				// The original Spline material keeps the diffuse planet layer semi-transparent.
+				// Force it fully opaque so the wordmark/tagline cannot bleed through the globe.
+				if (uniforms.nodeU1) uniforms.nodeU1.value = 1;
+				if (uniforms.nodeU32) uniforms.nodeU32.value = 1;
+				if (uniforms.nodeU33) uniforms.nodeU33.value = 1;
+				material.opacity = 1;
+				material.transparent = false;
+				material.depthWrite = true;
+
+				if (!material.userData.__agedPlanetTextureShader) {
+					const previousOnBeforeCompile = material.onBeforeCompile;
+					material.onBeforeCompile = (shader, renderer) => {
+						previousOnBeforeCompile?.call(material, shader, renderer);
+						shader.fragmentShader = patchPlanetFragmentShader(shader.fragmentShader);
+					};
+					material.customProgramCacheKey = () => 'agedplanet-texture-v2';
+					material.fragmentShader = patchPlanetFragmentShader(material.fragmentShader);
+					material.userData.__agedPlanetTextureShader = true;
+				}
+
+				material.needsUpdate = true;
+				material.uniformsNeedUpdate = true;
+				app.requestRender?.();
+			}
 
 			const onLoad = () => {
-				
+				scheduleHighResolutionRenderTarget();
+				applyTexturedPlanetMaterial();
 				preloader.style.display = 'none';
 			}
+
+			window.addEventListener('resize', scheduleHighResolutionRenderTarget);
 
 			const preloader = document.getElementById('preloader');
 
