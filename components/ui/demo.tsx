@@ -9,10 +9,33 @@ const scrollSpring = { stiffness: 320, damping: 34, mass: 0.16 };
 
 const wordmark3dStyle = {
   color: "#ffffff",
+  WebkitTextFillColor: "#ffffff",
   textShadow:
-    "0 0 2px rgba(255,255,255,1), 0 1px 0 rgba(255,255,255,1), 0 2px 0 rgba(238,238,238,0.96), 0 3px 0 rgba(214,214,214,0.9), 0 5px 0 rgba(150,150,150,0.78), 0 8px 0 rgba(72,72,72,0.82), 0 13px 18px rgba(0,0,0,0.72), 0 24px 44px rgba(0,0,0,0.62), 0 42px 90px rgba(255,255,255,0.24)",
-  WebkitTextStroke: "1px rgba(255,255,255,0.75)",
-  filter: "drop-shadow(0 18px 18px rgba(0,0,0,0.46))",
+    // Crisp bright-white face with glow
+    "0 0 2px rgba(255,255,255,1)," +
+    "0 0 6px rgba(255,255,255,0.92)," +
+    // Tight front edge — pure white
+    "0 1px 0 rgba(255,255,255,1)," +
+    // Shallow bevel — barely visible, stays white
+    "0 2px 0 rgba(245,245,245,0.94)," +
+    "0 3px 0 rgba(220,220,220,0.82)," +
+    // Controlled extrusion — darker but shorter stack
+    "0 5px 0 rgba(130,130,130,0.68)," +
+    "0 7px 0 rgba(80,80,80,0.72)," +
+    // Tight contact shadow — grounds the text without muddying
+    "0 11px 14px rgba(0,0,0,0.56)," +
+    // Soft ambient depth
+    "0 20px 36px rgba(0,0,0,0.46)," +
+    // Wide airy glow — keeps the mark luminous
+    "0 36px 80px rgba(255,255,255,0.18)",
+  WebkitTextStroke: "0.5px rgba(255,255,255,0.7)",
+};
+
+const taglineStyle = {
+  color: "#ffffff",
+  textShadow:
+    "0 1px 3px rgba(0,0,0,0.52)," +
+    "0 4px 16px rgba(0,0,0,0.38)",
 };
 
 export default function Hero() {
@@ -31,17 +54,17 @@ export default function Hero() {
         ref={container}
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-end px-6 pb-[16vh] pt-6 text-[#FFF8F0] sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
+        <div className="pointer-events-none absolute inset-0 z-[25] flex items-end px-6 pb-[16vh] pt-6 text-white sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
           <div className="translate-x-[5vw] sm:translate-x-[4vw]">
             <h1
-              className="max-w-5xl text-balance text-6xl font-semibold leading-[0.95] tracking-[-0.09em] text-white sm:text-8xl lg:text-[8vw]"
+              className="max-w-5xl text-balance text-5xl font-bold leading-[0.94] tracking-[-0.05em] text-white sm:text-7xl md:text-8xl lg:text-[7.5vw]"
               style={wordmark3dStyle}
             >
               AgedPlanet
             </h1>
             <p
-              className="mt-3 max-w-4xl text-balance text-xl font-semibold leading-[0.96] tracking-[-0.065em] text-white sm:mt-4 sm:text-3xl lg:text-[2.15vw]"
-              style={wordmark3dStyle}
+              className="mt-3 max-w-4xl text-balance text-lg font-light leading-[1.22] tracking-[-0.015em] text-white sm:mt-4 sm:text-2xl lg:text-[1.6vw]"
+              style={taglineStyle}
             >
               Honest products. Cleaner operations. No hype tax.
             </p>
@@ -78,14 +101,14 @@ export default function Hero() {
             <span>AgedPlanet Ecommerce Inc.</span>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <div className="grid gap-8 lg:grid-cols-[0.42fr_1.58fr] lg:items-end">
             <div>
               <div
                 aria-hidden="true"
                 className="h-[5.05rem] sm:h-[8.75rem] lg:h-[9.75vw]"
               />
             </div>
-            <p className="max-w-xl rounded-[1.5rem] bg-[#4B2E2B]/68 p-5 text-balance text-xl leading-tight tracking-[-0.04em] text-[#FFF8F0] shadow-2xl ring-1 ring-[#C08552]/35 backdrop-blur-md sm:text-2xl lg:text-[1.65vw]">
+            <p className="max-w-[42rem] justify-self-start rounded-[1.5rem] bg-[#4B2E2B]/68 p-5 text-balance text-lg leading-tight tracking-[-0.04em] text-[#FFF8F0] shadow-2xl ring-1 ring-[#C08552]/35 backdrop-blur-md sm:text-xl lg:text-[1.38vw]">
               Rebuilding ecommerce the practical way: validate demand, test
               suppliers, and launch only products worth standing behind.
             </p>
