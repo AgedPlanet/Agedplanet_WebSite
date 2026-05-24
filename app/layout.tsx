@@ -16,12 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AgedPlanet | Marketing & Trading Agency",
   description:
-    "AgedPlanet is a marketing and trading agency supporting market strategy, supplier coordination, ecommerce launch, and commercial partnerships.",
+    "AgedPlanet is a marketing and trading agency with certified Google Ads expertise, social media marketing across platforms, and ecommerce operations support — market strategy, supplier coordination, and commercial partnerships.",
   metadataBase: new URL("https://agedplanet.com"),
   openGraph: {
     title: "AgedPlanet | Marketing & Trading Agency",
     description:
-      "Marketing, sourcing, and trading support for brands ready to move.",
+      "Marketing, sourcing, and trading support for brands ready to move — certified Google Ads, social media, and ecommerce operations.",
     siteName: "AgedPlanet",
     type: "website",
   },

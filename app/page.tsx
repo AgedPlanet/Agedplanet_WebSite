@@ -6,7 +6,6 @@ import {
   BadgeCheck,
   Boxes,
   Factory,
-  Globe2,
   PackageCheck,
   SearchCheck,
   Store,
@@ -22,7 +21,7 @@ const focusAreas: Array<{
   {
     title: "Market positioning",
     description:
-      "Turn product value into clear messaging, channel strategy, and campaigns built for buyers, distributors, and online customers.",
+      "Turn product value into clear messaging, channel strategy, and campaigns — from search and social to marketplace promotion — built for buyers, distributors, and online customers.",
     icon: SearchCheck,
   },
   {
@@ -34,7 +33,7 @@ const focusAreas: Array<{
   {
     title: "Commerce launch support",
     description:
-      "Prepare listings, sales materials, fulfillment flows, and customer touchpoints for ecommerce, marketplace, and wholesale channels.",
+      "Prepare listings, sales materials, fulfillment flows, and customer touchpoints for storefronts, marketplaces, and wholesale — backed by hands-on operational experience across major commerce platforms and fulfillment networks.",
     icon: Store,
   },
 ];
@@ -49,8 +48,8 @@ const process = [
 const operatingNotes = [
   "Brand positioning and go-to-market planning",
   "Supplier and trading coordination",
-  "Ecommerce, marketplace, and wholesale readiness",
-  "Campaign assets, outreach, and launch support",
+  "Ecommerce operations and marketplace management",
+  "Google Ads search, measurement, and social campaigns",
 ];
 
 function PillLink({ href, children }: { href: string; children: ReactNode }) {
@@ -86,12 +85,18 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
 function SiteHeader() {
   return (
     <header className="relative z-50 border-b border-[#2D1F14]/10 bg-[#C8B89A]/95 text-[#2D1F14] backdrop-blur-2xl">
-      <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5 text-xs text-[#2D1F14]">
-        <a className="flex items-center gap-2 font-semibold tracking-[-0.02em]" href="#top">
-          <Globe2 className="size-4" />
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 text-base text-[#2D1F14]">
+        <a className="flex items-center gap-3 font-semibold tracking-[-0.02em]" href="#top">
+          <Image
+            alt="AgedPlanet"
+            className="-my-3 size-28"
+            height={112}
+            src="/agedplanet-logo.png"
+            width={112}
+          />
           AgedPlanet
         </a>
-        <div className="hidden items-center gap-7 text-[#2D1F14]/55 sm:flex">
+        <div className="hidden items-center gap-8 text-[#2D1F14]/75 sm:flex">
           <a className="transition hover:text-[#2D1F14]" href="#focus">Services</a>
           <a className="transition hover:text-[#2D1F14]" href="#process">Process</a>
           <a className="transition hover:text-[#2D1F14]" href="#status">Capabilities</a>
@@ -118,13 +123,15 @@ export default function Home() {
         <div className="space-y-6 text-lg leading-8 text-[#4B2E2B]/75">
           <p>
             AgedPlanet works with brands, suppliers, and operators that need a
-            practical route into market: positioning, digital marketing,
-            supplier coordination, and trading support across ecommerce and
-            wholesale channels.
+            practical route into market: positioning, search and social
+            marketing, supplier coordination, and trading support across
+            ecommerce and wholesale channels.
           </p>
           <p>
-            We help shape the offer, prepare the sales path, and coordinate the
-            commercial details that turn interest into orders.
+            We bring certified Google Ads expertise across search and
+            measurement, social media marketing experience on every major
+            platform, and hands-on ecommerce operations knowledge — so the
+            path from positioning to purchase stays practical and measurable.
           </p>
           <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <PillLink href="#contact">Start a conversation</PillLink>
@@ -266,9 +273,10 @@ export default function Home() {
             it into a commercial plan.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#4B2E2B]/70">
-            Use AgedPlanet for marketing strategy, trade coordination, ecommerce
-            launch support, or partnership development across North American and
-            international channels.
+            Use AgedPlanet for marketing strategy, search and social
+            advertising, ecommerce operations, trade coordination, or
+            partnership development across North American and international
+            channels.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <PillLink href="mailto:ahmedgawish@agedplanet.com">

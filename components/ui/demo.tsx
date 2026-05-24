@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const agedPlanetSplineScene = "/agedplanet-spline.html";
 
@@ -40,6 +40,16 @@ export default function Hero() {
   const rawScrollY = useTransform(scrollYProgress, [0, 1], ["-2%", "10%"]);
   const scrollY = useSpring(rawScrollY, scrollSpring);
 
+  const [splineReady, setSplineReady] = useState(false);
+
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.data === "spline-loaded") setSplineReady(true);
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
   return (
     <section className="mx-2 mt-0 overflow-hidden rounded-[2rem] bg-[#FFF8F0] md:mx-4 md:mt-2 md:rounded-[2.5rem]">
       <div
@@ -73,7 +83,7 @@ export default function Hero() {
             <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform">
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
-                className="absolute inset-0 h-full w-full scale-[1.04] border-0 opacity-100"
+                className={`absolute inset-0 h-full w-full scale-[1.04] border-0 transition-opacity duration-1000 ${splineReady ? "opacity-100" : "opacity-0"}`}
                 style={{
                   filter:
                     "sepia(0.15) saturate(0.7) hue-rotate(340deg) brightness(0.85) contrast(1.35)",
