@@ -1,4 +1,5 @@
 import Hero from "@/components/ui/demo";
+import SiteHeader from "@/components/ui/site-header";
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import {
@@ -79,31 +80,6 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
     <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#8C5A3C]">
       {children}
     </p>
-  );
-}
-
-function SiteHeader() {
-  return (
-    <header className="relative z-50 border-b border-[#2D1F14]/10 bg-[#C8B89A]/95 text-[#2D1F14] backdrop-blur-2xl">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 text-base text-[#2D1F14]">
-        <a className="flex items-center gap-3 font-semibold tracking-[-0.02em]" href="#top">
-          <Image
-            alt="AgedPlanet"
-            className="-my-3 size-28"
-            height={112}
-            src="/agedplanet-logo.png"
-            width={112}
-          />
-          AgedPlanet
-        </a>
-        <div className="hidden items-center gap-8 text-[#2D1F14]/75 sm:flex">
-          <a className="transition hover:text-[#2D1F14]" href="#focus">Services</a>
-          <a className="transition hover:text-[#2D1F14]" href="#process">Process</a>
-          <a className="transition hover:text-[#2D1F14]" href="#status">Capabilities</a>
-          <a className="transition hover:text-[#2D1F14]" href="#contact">Contact</a>
-        </div>
-      </nav>
-    </header>
   );
 }
 
@@ -279,14 +255,14 @@ export default function Home() {
             channels.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <PillLink href="mailto:ahmedgawish@agedplanet.com">
+            <PillLink href="mailto:info@agedplanet.com">
               Email AgedPlanet
             </PillLink>
             <a
               className="inline-flex h-11 items-center gap-2 text-sm font-medium text-[#8C5A3C] transition hover:text-[#4B2E2B]"
-              href="mailto:ahmedgawish@agedplanet.com?subject=AgedPlanet%20partnership"
+              href="mailto:info@agedplanet.com?subject=AgedPlanet%20partnership"
             >
-              ahmedgawish@agedplanet.com
+              info@agedplanet.com
               <ArrowUpRight className="size-4" />
             </a>
           </div>

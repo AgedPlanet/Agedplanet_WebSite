@@ -51,7 +51,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="mx-2 mt-0 overflow-hidden rounded-[2rem] bg-[#FFF8F0] md:mx-4 md:mt-2 md:rounded-[2.5rem]">
+    <section className="mx-2 mt-2 overflow-hidden rounded-[2rem] bg-[#FFF8F0] md:mx-4 md:mt-2 md:rounded-[2.5rem]">
       <div
         className="relative isolate flex h-[88vh] min-h-[620px] items-center justify-center overflow-hidden bg-[#C8B89A]"
         ref={container}
@@ -102,7 +102,7 @@ export default function Hero() {
 
         <div className="pointer-events-none relative z-30 flex h-full w-full flex-col justify-between p-6 text-[#2D1F14] sm:p-10 lg:p-20">
           <div className="flex items-center text-xs uppercase tracking-[0.32em] text-[#2D1F14]/60 sm:text-sm">
-            <span>AgedPlanet Marketing & Trading</span>
+            <span>AgedPlanet Ecommerce Inc</span>
           </div>
 
           <div className="flex justify-end">
