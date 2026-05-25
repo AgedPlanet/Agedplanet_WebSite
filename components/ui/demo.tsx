@@ -33,6 +33,7 @@ const taglineStyle = {
 
 export default function Hero() {
   const container = useRef<HTMLDivElement | null>(null);
+  const splineFrame = useRef<HTMLIFrameElement | null>(null);
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"],
     target: container,
@@ -41,6 +42,11 @@ export default function Hero() {
   const scrollY = useSpring(rawScrollY, scrollSpring);
 
   const [splineReady, setSplineReady] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
@@ -57,7 +63,7 @@ export default function Hero() {
         ref={container}
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="pointer-events-none absolute inset-0 z-[25] flex items-end px-6 pb-[16vh] pt-6 text-[#2D1F14] sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20">
+        <div className={`absolute inset-0 flex items-end px-6 pb-[16vh] pt-6 text-[#2D1F14] sm:px-10 sm:pb-[15vh] sm:pt-10 lg:px-20 lg:pb-[14vh] lg:pt-20 pointer-events-none ${isTouch ? "z-[22]" : "z-[25]"}`}>
           <div className="translate-x-[5vw] sm:translate-x-[4vw]">
             <h1
               className="max-w-5xl text-balance text-5xl font-bold leading-[0.94] tracking-[-0.05em] sm:text-7xl md:text-8xl lg:text-[7.5vw]"
@@ -80,13 +86,15 @@ export default function Hero() {
             style={{ y: scrollY }}
             suppressHydrationWarning
           >
-            <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform">
+            <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform" style={isTouch ? { touchAction: "manipulation" } : undefined}>
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
                 className={`absolute inset-0 h-full w-full scale-[1.04] border-0 transition-opacity duration-1000 ${splineReady ? "opacity-100" : "opacity-0"}`}
+                ref={splineFrame}
                 style={{
                   filter:
                     "sepia(0.15) saturate(0.7) hue-rotate(340deg) brightness(0.85) contrast(1.35)",
+                  ...(isTouch ? { pointerEvents: "auto", touchAction: "manipulation" } : {}),
                 }}
                 loading="eager"
                 referrerPolicy="no-referrer"
