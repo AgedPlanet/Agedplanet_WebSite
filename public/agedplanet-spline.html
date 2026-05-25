@@ -248,12 +248,74 @@ vec3 apPlanetTexture(vec3 base, vec2 uv, vec3 normal, vec3 pos) {
 				app.requestRender?.();
 			}
 
-			const onLoad = () => {
-				scheduleHighResolutionRenderTarget();
-				applyTexturedPlanetMaterial();
-				preloader.style.display = 'none';
-				window.parent.postMessage('spline-loaded', '*');
-			}
+		const setupTouchToMouseBridge = () => {
+			// Bridge touch events to synthetic mouse events so the Spline scene
+			// responds to touch-and-hold the same way it responds to mouse hover.
+			// Three.js raycaster listens for mousemove on the canvas — on mobile
+			// touch events don't trigger those, so we dispatch them ourselves.
+			const c = document.getElementById('canvas3d');
+			if (!c) return;
+
+			c.addEventListener('touchstart', (e) => {
+				if (e.touches.length !== 1) return;
+				e.preventDefault();
+				const t = e.touches[0];
+				c.dispatchEvent(new MouseEvent('mousemove', {
+					clientX: t.clientX, clientY: t.clientY,
+					bubbles: true, cancelable: true, view: window,
+				}));
+				c.dispatchEvent(new PointerEvent('pointermove', {
+					clientX: t.clientX, clientY: t.clientY,
+					pointerType: 'touch', isPrimary: true,
+					bubbles: true, cancelable: true, view: window,
+				}));
+			}, { passive: false });
+
+			c.addEventListener('touchmove', (e) => {
+				if (e.touches.length !== 1) return;
+				e.preventDefault();
+				const t = e.touches[0];
+				c.dispatchEvent(new MouseEvent('mousemove', {
+					clientX: t.clientX, clientY: t.clientY,
+					bubbles: true, cancelable: true, view: window,
+				}));
+				c.dispatchEvent(new PointerEvent('pointermove', {
+					clientX: t.clientX, clientY: t.clientY,
+					pointerType: 'touch', isPrimary: true,
+					bubbles: true, cancelable: true, view: window,
+				}));
+			}, { passive: false });
+
+			c.addEventListener('touchend', (e) => {
+				e.preventDefault();
+				c.dispatchEvent(new MouseEvent('mouseleave', {
+					bubbles: true, cancelable: true, view: window,
+				}));
+				c.dispatchEvent(new PointerEvent('pointerleave', {
+					pointerType: 'touch', isPrimary: true,
+					bubbles: true, cancelable: true, view: window,
+				}));
+			}, { passive: false });
+
+			c.addEventListener('touchcancel', (e) => {
+				e.preventDefault();
+				c.dispatchEvent(new MouseEvent('mouseleave', {
+					bubbles: true, cancelable: true, view: window,
+				}));
+				c.dispatchEvent(new PointerEvent('pointerleave', {
+					pointerType: 'touch', isPrimary: true,
+					bubbles: true, cancelable: true, view: window,
+				}));
+			}, { passive: false });
+		};
+
+		const onLoad = () => {
+			scheduleHighResolutionRenderTarget();
+			applyTexturedPlanetMaterial();
+			setupTouchToMouseBridge();
+			preloader.style.display = 'none';
+			window.parent.postMessage('spline-loaded', '*');
+		}
 
 			window.addEventListener('resize', scheduleHighResolutionRenderTarget);
 
