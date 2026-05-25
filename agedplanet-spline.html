@@ -255,14 +255,14 @@ vec3 apPlanetTexture(vec3 base, vec2 uv, vec3 normal, vec3 pos) {
 			// touch events don't trigger those, so we dispatch them ourselves.
 			//
 			// Scrolling: since touch-action:none blocks browser scrolling in the
-			// hero, we detect vertical swipe gestures and scroll the parent page
-			// manually via window.parent.scrollBy().
+			// hero, we detect vertical swipe gestures and drive the parent page
+			// scroll position directly — tracking finger offset 1:1 for natural feel.
 			const c = document.getElementById('canvas3d');
 			if (!c) return;
 
 			const SCROLL_THRESHOLD = 12; // px of vertical movement to start scrolling
-			let touchStartY = 0;
-			let touchStartX = 0;
+			let gestureStartY = 0;
+			let scrollStartY = 0;
 			let isScrolling = false;
 
 			const dispatchHover = (clientX, clientY) => {
@@ -291,8 +291,8 @@ vec3 apPlanetTexture(vec3 base, vec2 uv, vec3 normal, vec3 pos) {
 				if (e.touches.length !== 1) return;
 				e.preventDefault();
 				const t = e.touches[0];
-				touchStartY = t.clientY;
-				touchStartX = t.clientX;
+				gestureStartY = t.clientY;
+				scrollStartY = window.parent.scrollY;
 				isScrolling = false;
 				dispatchHover(t.clientX, t.clientY);
 			}, { passive: false });
@@ -301,17 +301,16 @@ vec3 apPlanetTexture(vec3 base, vec2 uv, vec3 normal, vec3 pos) {
 				if (e.touches.length !== 1) return;
 				e.preventDefault();
 				const t = e.touches[0];
-				const deltaY = t.clientY - touchStartY;
+				const fingerOffset = gestureStartY - t.clientY; // positive = finger up
 
-				if (!isScrolling && Math.abs(deltaY) > SCROLL_THRESHOLD) {
+				if (!isScrolling && Math.abs(fingerOffset) > SCROLL_THRESHOLD) {
 					isScrolling = true;
 				}
 
 				if (isScrolling) {
-					window.parent.scrollBy(0, -deltaY);
-					touchStartY = t.clientY; // reset anchor for continuous scroll
+					// 1:1 finger tracking — scroll position follows gesture directly
+					window.parent.scrollTo(0, scrollStartY + fingerOffset);
 				} else {
-					// Small movement — treat as hover adjustment
 					dispatchHover(t.clientX, t.clientY);
 				}
 			}, { passive: false });
