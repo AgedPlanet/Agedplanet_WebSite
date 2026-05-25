@@ -86,7 +86,7 @@ export default function Hero() {
             style={{ y: scrollY }}
             suppressHydrationWarning
           >
-            <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform" style={isTouch ? { touchAction: "manipulation" } : undefined}>
+            <div className="absolute -inset-x-[4%] top-0 h-full transform-gpu will-change-transform" style={isTouch ? { touchAction: "none" } : undefined}>
               <iframe
                 aria-label="AgedPlanet interactive orbital commerce background"
                 className={`absolute inset-0 h-full w-full scale-[1.04] border-0 transition-opacity duration-1000 ${splineReady ? "opacity-100" : "opacity-0"}`}
@@ -94,7 +94,7 @@ export default function Hero() {
                 style={{
                   filter:
                     "sepia(0.15) saturate(0.7) hue-rotate(340deg) brightness(0.85) contrast(1.35)",
-                  ...(isTouch ? { pointerEvents: "auto", touchAction: "manipulation" } : {}),
+                  ...(isTouch ? { pointerEvents: "auto", touchAction: "none" } : {}),
                 }}
                 loading="eager"
                 referrerPolicy="no-referrer"
