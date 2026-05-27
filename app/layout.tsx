@@ -38,6 +38,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://unpkg.com" crossOrigin="anonymous" />
+        <link rel="preload" as="fetch" href="/agedplanet-spline.html" />
+        <link rel="modulepreload" href="https://unpkg.com/@splinetool/runtime@1.0.66/build/runtime.js" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
